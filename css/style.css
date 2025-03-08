@@ -48,6 +48,7 @@ body {
   font-size: 26px;
   font-weight: 700;
   letter-spacing: 1px;
+  animation: topToBottom 1s ease forwards;
 }
 span {
   color: var(--hover-color);
@@ -72,7 +73,7 @@ span {
 }
 
 .home {
-  padding: 10px 10%;
+  padding: 100px 10%;
   min-height: 100vh;
   height: 100%;
   width: 100%;
@@ -85,19 +86,41 @@ span {
   max-width: 600px;
 }
 .home-content p {
+  position: relative;
   font-size: var(--p-font);
   font-weight: 700;
   color: #bdbdbd;
   line-height: 1.6;
+  overflow: hidden;
+}
+
+.home-content p::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--bg-color);
+  animation: showTop 2s ease 1s forwards;
 }
 .home-content h1 {
   font-size: var(--big-font);
   font-weight: 700;
+  margin-bottom: 20px;
+
+  animation: leftToRight 1.5s ease forwards;
 }
 .home-content h3 {
   font-size: var(--normal-font);
   font-weight: 700;
   color: var(--hover-color);
+  margin-bottom: 20px;
+
+  position: relative;
+  text-shadow: var(--font-neon-text-shadow);
+  animation: neon_anima 1.5s ease-in-out alternate;
+  animation: rightToLeft 1.5s ease forwards;
 }
 .info-box {
   display: flex;
@@ -115,6 +138,13 @@ span {
   font-size: 0.9rem;
   color: #bdbdbd;
 }
+.info-box .email-info {
+  animation: leftToRight 1.5s ease forwards;
+}
+.behance-info {
+  animation: rightToLeft 1.5s ease forwards;
+}
+
 .home-content .btn-box {
   display: flex;
   justify-content: space-between;
@@ -158,11 +188,18 @@ span {
 .home-content .btn-box a:hover::before {
   width: 100%;
 }
+.btn-box a:nth-child(1) {
+  animation: leftToRight 3s ease forwards;
+}
+.btn-box a:nth-child(2) {
+  animation: rightToLeft 3s ease forwards;
+}
 
 .img-box img {
   max-width: 350px;
   width: 100%;
   height: auto;
+  animation: topToBottom ease 3s forwards;
 }
 .home-img {
   position: relative;
@@ -179,4 +216,65 @@ span {
 }
 .liquid-shape:nth-child(2) {
   filter: blur(10px);
+}
+
+/* keyframs  */
+
+/* @keyframes showTop {
+  100% {
+    width: 0;
+  }
+} */
+
+@keyframes showTop {
+  0% {
+    width: 100%;
+  }
+  100% {
+    width: 0;
+  }
+}
+
+@keyframes topToBottom {
+  0% {
+    opacity: 0;
+    transform: translateY(-200px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes leftToRight {
+  0% {
+    opacity: 0;
+    transform: translateX(-300px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes rightToLeft {
+  0% {
+    opacity: 0;
+    transform: translateX(300px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes neon_anima {
+  from {
+    opacity: 1;
+    text-shadow: var(--font-neon-text-shadow);
+  }
+  to {
+    opacity: 0.6;
+    text-shadow: none;
+  }
 }
